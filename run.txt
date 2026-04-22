@@ -1,0 +1,6 @@
+backend:cd "a:\3RD YEAR\GOOGLE_HACKATHON\backend\open_neuro_verdict_backend (2)\open_neuro_verdict_backend"
+python -m uvicorn main:app --reload
+
+
+frontend:cd "a:\3RD YEAR\GOOGLE_HACKATHON\OpenNeuroVerdict\frontend"
+npm run dev
