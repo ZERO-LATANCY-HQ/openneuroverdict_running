@@ -48,7 +48,7 @@ export default function App() {
     }, 600);
 
     try {
-      const res = await fetch("http://localhost:8000/analyze", {
+      const res = await fetch("https://openneuroverdict-running.onrender.com/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ resume, job_description: jd }),
