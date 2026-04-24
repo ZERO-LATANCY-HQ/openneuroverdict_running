@@ -2,10 +2,10 @@ import { useRef, useState } from "react";
 import Reveal from "../components/Reveal";
 
 const AGENTS = [
-  { name: "Fact Analyzer", icon: "🔬", color: "#00d4ff", role: "Extracts structured data from resume", x: "8%", y: "22%" },
-  { name: "HR Expert", icon: "🧠", color: "#a78bfa", role: "Evaluates candidate-job fit", x: "78%", y: "15%" },
-  { name: "Ethics Auditor", icon: "⚖️", color: "#34d399", role: "Detects bias & fairness issues", x: "5%", y: "68%" },
-  { name: "Devil's Advocate", icon: "😈", color: "#f97316", role: "Challenges the HR decision", x: "75%", y: "72%" },
+  { name: "Fact Analyzer", icon: "🔬", color: "#00d4ff", role: "Extracts structured data", x: "4%", y: "18%" },
+  { name: "HR Expert", icon: "🧠", color: "#a78bfa", role: "Evaluates candidate fit", x: "80%", y: "12%" },
+  { name: "Ethics Auditor", icon: "⚖️", color: "#34d399", role: "Detects bias & fairness", x: "2%", y: "65%" },
+  { name: "Devil's Advocate", icon: "😈", color: "#f97316", role: "Challenges the decision", x: "78%", y: "68%" },
 ];
 
 function FloatingAgent({ agent, delay }) {
@@ -13,33 +13,29 @@ function FloatingAgent({ agent, delay }) {
   return (
     <div style={{
       position: "absolute", left: agent.x, top: agent.y,
-      animation: `float ${5 + delay}s ease-in-out ${delay}s infinite`,
-      zIndex: 2, cursor: "default"
+      animation: `float ${6 + delay}s ease-in-out ${delay}s infinite`,
+      zIndex: 2, userSelect: "none"
     }}
     onMouseEnter={() => setHovered(true)}
     onMouseLeave={() => setHovered(false)}
     >
-      {/* Icon bubble */}
       <div style={{
-        width: 46, height: 46, borderRadius: "50%",
-        background: `${agent.color}18`, border: `1.5px solid ${agent.color}${hovered ? "99" : "44"}`,
-        display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20,
-        boxShadow: hovered ? `0 0 20px ${agent.color}55` : `0 0 8px ${agent.color}22`,
-        transition: "all 0.3s ease",
-        transform: hovered ? "scale(1.15)" : "scale(1)"
+        width: 40, height: 40, borderRadius: "50%",
+        background: "#0d1117", border: `1px solid ${hovered ? agent.color + "66" : "#1e2433"}`,
+        display: "flex", alignItems: "center", justifyContent: "center", fontSize: 17,
+        transition: "border-color 0.3s",
+        boxShadow: hovered ? `0 0 16px ${agent.color}22` : "none"
       }}>{agent.icon}</div>
-
-      {/* Info tooltip on hover */}
       {hovered && (
         <div style={{
-          position: "absolute", top: 54, left: "50%", transform: "translateX(-50%)",
-          background: "#0d1117", border: `1px solid ${agent.color}55`,
-          borderRadius: 8, padding: "8px 12px", whiteSpace: "nowrap",
-          animation: "fadeIn 0.2s ease", zIndex: 10,
-          boxShadow: `0 4px 20px ${agent.color}22`
+          position: "absolute", top: 48, left: "50%", transform: "translateX(-50%)",
+          background: "#0d1117", border: "1px solid #1e2433",
+          borderRadius: 6, padding: "6px 10px", whiteSpace: "nowrap",
+          animation: "fadeIn 0.15s ease", zIndex: 10,
+          boxShadow: "0 8px 24px #00000066"
         }}>
-          <div style={{ color: agent.color, fontSize: 11, fontFamily: "monospace", fontWeight: 700 }}>{agent.name}</div>
-          <div style={{ color: "#8b949e", fontSize: 10, marginTop: 2 }}>{agent.role}</div>
+          <div style={{ color: agent.color, fontSize: 10, fontFamily: "monospace", fontWeight: 700, letterSpacing: 0.5 }}>{agent.name}</div>
+          <div style={{ color: "#484f58", fontSize: 9, marginTop: 2, fontFamily: "monospace" }}>{agent.role}</div>
         </div>
       )}
     </div>
@@ -52,32 +48,31 @@ function RippleButton({ onClick, children }) {
 
   const handleClick = (e) => {
     const rect = btnRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
     const id = Date.now();
-    setRipples(r => [...r, { x, y, id }]);
+    setRipples(r => [...r, { x: e.clientX - rect.left, y: e.clientY - rect.top, id }]);
     setTimeout(() => setRipples(r => r.filter(rp => rp.id !== id)), 600);
     onClick();
   };
 
   return (
     <button ref={btnRef} onClick={handleClick} style={{
-      background: "linear-gradient(135deg, #00d4ff22, #a78bfa22)",
-      border: "1px solid #00d4ff66", color: "#00d4ff",
-      padding: "14px 48px", borderRadius: 8, cursor: "pointer",
-      fontFamily: "'Space Mono', monospace", fontSize: 13, fontWeight: 700,
+      background: "linear-gradient(135deg, #00d4ff, #a78bfa)",
+      border: "none", color: "#080c14",
+      padding: "13px 44px", borderRadius: 6, cursor: "pointer",
+      fontFamily: "'Space Mono', monospace", fontSize: 12, fontWeight: 700,
       letterSpacing: 2, position: "relative", overflow: "hidden",
-      transition: "all 0.3s cubic-bezier(0.16,1,0.3,1)",
-      animation: "fadeIn 1s ease 0.4s backwards"
+      transition: "opacity 0.2s, transform 0.2s",
+      boxShadow: "0 4px 24px #00d4ff22"
     }}
-    onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px) scale(1.02)"; e.currentTarget.style.boxShadow = "0 8px 30px #00d4ff33"; }}
-    onMouseLeave={e => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "none"; }}
+    onMouseEnter={e => { e.currentTarget.style.opacity = "0.9"; e.currentTarget.style.transform = "translateY(-1px)"; }}
+    onMouseLeave={e => { e.currentTarget.style.opacity = "1"; e.currentTarget.style.transform = "none"; }}
     >
+      <style>{`@keyframes ripple { to { transform: translate(-50%,-50%) scale(20); opacity: 0; } }`}</style>
       {ripples.map(r => (
         <span key={r.id} style={{
-          position: "absolute", left: r.x, top: r.y,
-          width: 8, height: 8, borderRadius: "50%",
-          background: "#00d4ff88", transform: "translate(-50%,-50%) scale(0)",
+          position: "absolute", left: r.x, top: r.y, width: 6, height: 6,
+          borderRadius: "50%", background: "#ffffff44",
+          transform: "translate(-50%,-50%) scale(0)",
           animation: "ripple 0.6s ease-out forwards", pointerEvents: "none"
         }} />
       ))}
@@ -88,62 +83,68 @@ function RippleButton({ onClick, children }) {
 
 export default function LandingPage({ onStart }) {
   return (
-    <div style={{ maxWidth: 860, margin: "0 auto", padding: "60px 32px", position: "relative" }}>
-      <style>{`
-        @keyframes ripple { to { transform: translate(-50%,-50%) scale(18); opacity: 0; } }
-      `}</style>
+    <div style={{ maxWidth: 900, margin: "0 auto", padding: "80px 40px 60px", position: "relative", minHeight: "80vh", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+      {/* Subtle background glow */}
+      <div style={{ position: "absolute", top: "20%", left: "50%", transform: "translateX(-50%)", width: 500, height: 300, borderRadius: "50%", background: "radial-gradient(ellipse, #00d4ff07, transparent 70%)", pointerEvents: "none" }} />
 
-      {/* Parallax background orbs */}
-      <div style={{ position: "absolute", top: 80, left: -120, width: 320, height: 320, borderRadius: "50%", background: "radial-gradient(circle, #00d4ff0d, transparent)", filter: "blur(60px)", animation: "float 8s ease-in-out infinite", pointerEvents: "none" }} />
-      <div style={{ position: "absolute", bottom: 80, right: -120, width: 400, height: 400, borderRadius: "50%", background: "radial-gradient(circle, #a78bfa0d, transparent)", filter: "blur(80px)", animation: "float 10s ease-in-out infinite reverse", pointerEvents: "none" }} />
+      {/* Floating agents */}
+      {AGENTS.map((a, i) => <FloatingAgent key={a.name} agent={a} delay={i * 1.5} />)}
 
-      {/* Floating agent info bubbles */}
-      {AGENTS.map((a, i) => <FloatingAgent key={a.name} agent={a} delay={i * 1.2} />)}
-
-      {/* Hero content */}
+      {/* Hero */}
       <Reveal>
-        <div style={{ textAlign: "center", marginBottom: 52, position: "relative", zIndex: 3 }}>
-          <div style={{ fontSize: 10, letterSpacing: 4, color: "#00d4ff", marginBottom: 14 }}>
-            TRANSPARENT · UNBIASED · EXPLAINABLE
-          </div>
-          <h1 style={{
-            fontFamily: "'Space Mono', monospace", fontSize: 36, fontWeight: 700,
-            color: "#e6edf3", margin: "0 0 16px", lineHeight: 1.2,
-            animation: "slideUp 0.8s cubic-bezier(0.16,1,0.3,1)"
+        <div style={{ textAlign: "center", position: "relative", zIndex: 3 }}>
+          {/* Badge */}
+          <div style={{
+            display: "inline-flex", alignItems: "center", gap: 6,
+            background: "#0d1117", border: "1px solid #1e2433",
+            borderRadius: 20, padding: "5px 14px", marginBottom: 28
           }}>
-            AI Hiring That{" "}
-            <span style={{
-              background: "linear-gradient(90deg, #00d4ff, #a78bfa)",
-              WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
-              animation: "shimmer 3s ease-in-out infinite"
-            }}>Debates Itself</span>
+            <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#34d399" }} />
+            <span style={{ fontSize: 9, color: "#8b949e", fontFamily: "monospace", letterSpacing: 2 }}>MULTI-AGENT AI SYSTEM</span>
+          </div>
+
+          <h1 style={{
+            fontFamily: "'Space Mono', monospace", fontSize: 38, fontWeight: 700,
+            color: "#e6edf3", margin: "0 0 8px", lineHeight: 1.15, letterSpacing: -0.5
+          }}>
+            Hiring Decisions That
           </h1>
-          <p style={{ color: "#8b949e", fontSize: 15, maxWidth: 520, margin: "0 auto 32px", animation: "fadeIn 1s ease 0.2s backwards" }}>
-            4 specialized AI agents analyze, argue, and vote on every hiring decision — fully transparent, fully explainable.
+          <h1 style={{
+            fontFamily: "'Space Mono', monospace", fontSize: 38, fontWeight: 700,
+            margin: "0 0 20px", lineHeight: 1.15,
+            background: "linear-gradient(90deg, #00d4ff, #a78bfa)",
+            WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent"
+          }}>
+            Explain Themselves
+          </h1>
+
+          <p style={{ color: "#6b7280", fontSize: 14, maxWidth: 480, margin: "0 auto 36px", lineHeight: 1.7, fontFamily: "system-ui, sans-serif" }}>
+            Four specialized AI agents debate every resume in real-time — delivering transparent, bias-audited hiring decisions with full reasoning.
           </p>
-          <RippleButton onClick={onStart}>▶ START ANALYSIS</RippleButton>
+
+          <RippleButton onClick={onStart}>START ANALYSIS →</RippleButton>
         </div>
       </Reveal>
 
-      {/* Feature cards */}
+      {/* Stats row */}
       <Reveal delay={300}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, position: "relative", zIndex: 3 }}>
+        <div style={{
+          display: "flex", justifyContent: "center", gap: 0,
+          marginTop: 64, position: "relative", zIndex: 3,
+          border: "1px solid #1e2433", borderRadius: 10, overflow: "hidden",
+          background: "#0d1117"
+        }}>
           {[
-            { icon: "🔍", label: "Transparent Reasoning", desc: "Every step visible" },
-            { icon: "⚖️", label: "Bias Detection", desc: "Gender, college, experience" },
-            { icon: "📊", label: "Fairness Score", desc: "0–100 audit score" },
-          ].map(f => (
-            <div key={f.label} style={{
-              padding: "16px", background: "#0d1117",
-              border: "1px solid #1a2030", borderRadius: 8, textAlign: "center",
-              transition: "all 0.3s cubic-bezier(0.16,1,0.3,1)", cursor: "default"
-            }}
-            onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.borderColor = "#00d4ff33"; }}
-            onMouseLeave={e => { e.currentTarget.style.transform = "none"; e.currentTarget.style.borderColor = "#1a2030"; }}
-            >
-              <div style={{ fontSize: 22, marginBottom: 8 }}>{f.icon}</div>
-              <div style={{ color: "#e6edf3", fontSize: 12, fontWeight: 700, marginBottom: 4 }}>{f.label}</div>
-              <div style={{ color: "#484f58", fontSize: 11 }}>{f.desc}</div>
+            { value: "4", label: "AI Agents" },
+            { value: "100%", label: "Explainable" },
+            { value: "0", label: "Black Boxes" },
+          ].map((s, i) => (
+            <div key={s.label} style={{
+              flex: 1, padding: "20px 24px", textAlign: "center",
+              borderRight: i < 2 ? "1px solid #1e2433" : "none"
+            }}>
+              <div style={{ fontFamily: "'Space Mono', monospace", fontSize: 22, fontWeight: 700, color: "#e6edf3", marginBottom: 4 }}>{s.value}</div>
+              <div style={{ fontSize: 10, color: "#484f58", letterSpacing: 1.5, textTransform: "uppercase", fontFamily: "monospace" }}>{s.label}</div>
             </div>
           ))}
         </div>
