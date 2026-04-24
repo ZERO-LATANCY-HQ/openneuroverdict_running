@@ -9,7 +9,7 @@ import VerdictPage from "./pages/VerdictPage";
 const GLOBAL_STYLES = `
   @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Space+Mono:wght@400;700&display=swap');
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: #080c14; }
+  body { background: #080c14; font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
   @keyframes slideIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
   @keyframes slideUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }

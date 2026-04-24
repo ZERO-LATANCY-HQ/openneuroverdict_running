@@ -40,10 +40,10 @@ function AgentBubble({ msg, active, onDone }) {
           transition: "border-color 0.3s",
           boxShadow: active ? `0 0 12px ${agent.color}33` : "none"
         }}>{agent.icon}</div>
-        <span style={{ color: agent.color, fontFamily: "monospace", fontWeight: 700, fontSize: 11, letterSpacing: 0.5 }}>{agent.name}</span>
+        <span style={{ color: agent.color, fontFamily: "monospace", fontWeight: 700, fontSize: 13, letterSpacing: 0.5 }}>{agent.name}</span>
         <div style={{ height: 1, flex: 1, background: "#1e2433" }} />
         <span style={{
-          fontSize: 9, padding: "2px 8px", borderRadius: 3,
+          fontSize: 9, padding: "3px 10px", borderRadius: 3,
           background: isHire ? "#00d4ff0d" : "#f974160d",
           color: isHire ? "#00d4ff" : "#f97416",
           border: `1px solid ${isHire ? "#00d4ff22" : "#f9741622"}`,
@@ -57,7 +57,7 @@ function AgentBubble({ msg, active, onDone }) {
         marginLeft: 42, background: "#0d1117",
         border: "1px solid #1e2433", borderLeft: `2px solid ${agent.color}44`,
         borderRadius: "0 6px 6px 6px", padding: "12px 16px",
-        color: "#9ca3af", fontFamily: "system-ui, sans-serif", fontSize: 13, lineHeight: 1.7
+        color: "#9ca3af", fontFamily: "system-ui, sans-serif", fontSize: 15, lineHeight: 1.8
       }}>
         <TypingText text={msg.reason} active={active} onDone={onDone} />
       </div>
@@ -96,9 +96,9 @@ export default function DebatePage({ messages, onComplete }) {
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <div style={{ width: 3, height: 14, background: "linear-gradient(180deg, #00d4ff, #a78bfa)", borderRadius: 2 }} />
-            <span style={{ fontFamily: "'Space Mono', monospace", fontSize: 13, color: "#e6edf3", fontWeight: 700 }}>Agent Debate</span>
+            <span style={{ fontFamily: "'Space Mono', monospace", fontSize: 15, color: "#e6edf3", fontWeight: 700 }}>Agent Debate</span>
           </div>
-          <div style={{ fontSize: 10, color: "#484f58", fontFamily: "monospace", marginTop: 3, marginLeft: 11 }}>
+          <div style={{ fontSize: 12, color: "#484f58", fontFamily: "monospace", marginTop: 3, marginLeft: 11 }}>
             {activeIdx + 1} of {messages.length} agents responded
           </div>
         </div>
@@ -122,7 +122,7 @@ export default function DebatePage({ messages, onComplete }) {
 
       {/* Next agent indicator */}
       {activeIdx < messages.length - 1 && nextAgent && (
-        <div style={{ marginTop: 16, display: "flex", alignItems: "center", gap: 8, color: "#484f58", fontSize: 11, fontFamily: "monospace" }}>
+        <div style={{ marginTop: 16, display: "flex", alignItems: "center", gap: 8, color: "#484f58", fontSize: 13, fontFamily: "monospace" }}>
           <div style={{ display: "flex", gap: 3 }}>
             {[0,1,2].map(i => (
               <div key={i} style={{ width: 3, height: 3, borderRadius: "50%", background: "#484f58", animation: `dotBounce 0.8s ease-in-out ${i*0.2}s infinite` }} />

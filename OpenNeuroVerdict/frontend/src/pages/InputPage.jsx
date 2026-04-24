@@ -30,7 +30,7 @@ export default function InputPage({ onSubmit }) {
             <div style={{ width: 3, height: 16, background: "linear-gradient(180deg, #00d4ff, #a78bfa)", borderRadius: 2 }} />
             <span style={{ fontFamily: "'Space Mono', monospace", fontSize: 16, color: "#e6edf3", fontWeight: 700 }}>New Analysis</span>
           </div>
-          <p style={{ color: "#484f58", fontSize: 12, margin: 0, fontFamily: "monospace" }}>
+          <p style={{ color: "#484f58", fontSize: 14, margin: 0, fontFamily: "monospace" }}>
             Upload or paste the candidate resume and job description to begin the multi-agent evaluation.
           </p>
         </div>
@@ -51,10 +51,10 @@ export default function InputPage({ onSubmit }) {
               }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                   <div style={{ width: 6, height: 6, borderRadius: "50%", background: color }} />
-                  <span style={{ fontSize: 10, color: "#8b949e", fontFamily: "monospace", letterSpacing: 1.5, textTransform: "uppercase" }}>{label}</span>
+                  <span style={{ fontSize: 12, color: "#8b949e", fontFamily: "monospace", letterSpacing: 1.5, textTransform: "uppercase" }}>{label}</span>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                  <span style={{ fontSize: 9, color: "#2d333b", fontFamily: "monospace" }}>{value.length} chars</span>
+                  <span style={{ fontSize: 11, color: "#2d333b", fontFamily: "monospace" }}>{value.length} chars</span>
                   {value && (
                     <button onClick={() => setter("")} style={{
                       background: "none", border: "none", color: "#3d4555",
@@ -76,7 +76,7 @@ export default function InputPage({ onSubmit }) {
               {/* Divider */}
               <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "0 16px 8px" }}>
                 <div style={{ flex: 1, height: 1, background: "#1a2030" }} />
-                <span style={{ color: "#2d333b", fontSize: 9, fontFamily: "monospace", letterSpacing: 1 }}>OR PASTE BELOW</span>
+                <span style={{ color: "#2d333b", fontSize: 11, fontFamily: "monospace", letterSpacing: 1 }}>OR PASTE BELOW</span>
                 <div style={{ flex: 1, height: 1, background: "#1a2030" }} />
               </div>
 
@@ -87,8 +87,8 @@ export default function InputPage({ onSubmit }) {
                 style={{
                   width: "100%", background: "transparent", border: "none",
                   borderTop: "1px solid #1e2433",
-                  color: "#c9d1d9", padding: "14px 16px", fontSize: 12,
-                  fontFamily: "'Courier Prime', monospace", lineHeight: 1.7,
+                  color: "#c9d1d9", padding: "14px 16px", fontSize: 14,
+                  fontFamily: "'Courier Prime', monospace", lineHeight: 1.8,
                   resize: "none", outline: "none", boxSizing: "border-box"
                 }}
               />
@@ -99,7 +99,7 @@ export default function InputPage({ onSubmit }) {
 
       <Reveal delay={200}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "16px 20px", background: "#0d1117", border: "1px solid #1e2433", borderRadius: 8 }}>
-          <div style={{ fontSize: 11, color: "#484f58", fontFamily: "monospace" }}>
+          <div style={{ fontSize: 13, color: "#484f58", fontFamily: "monospace" }}>
             {resume.trim() && jd.trim()
               ? "✓ Ready to analyze — both fields populated"
               : "⚠ Both fields required to proceed"}
@@ -111,7 +111,7 @@ export default function InputPage({ onSubmit }) {
               background: resume.trim() && jd.trim() ? "linear-gradient(135deg, #00d4ff, #a78bfa)" : "#1e2433",
               border: "none", color: resume.trim() && jd.trim() ? "#080c14" : "#3d4555",
               padding: "10px 32px", borderRadius: 6, cursor: resume.trim() && jd.trim() ? "pointer" : "not-allowed",
-              fontFamily: "'Space Mono', monospace", fontSize: 11, fontWeight: 700,
+              fontFamily: "'Space Mono', monospace", fontSize: 13, fontWeight: 700,
               letterSpacing: 1.5, transition: "opacity 0.2s, transform 0.2s"
             }}
             onMouseEnter={e => { if (resume.trim() && jd.trim()) e.currentTarget.style.opacity = "0.9"; }}

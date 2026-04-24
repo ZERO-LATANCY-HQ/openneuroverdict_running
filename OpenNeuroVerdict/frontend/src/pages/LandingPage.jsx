@@ -59,7 +59,7 @@ function RippleButton({ onClick, children }) {
       background: "linear-gradient(135deg, #00d4ff, #a78bfa)",
       border: "none", color: "#080c14",
       padding: "13px 44px", borderRadius: 6, cursor: "pointer",
-      fontFamily: "'Space Mono', monospace", fontSize: 12, fontWeight: 700,
+      fontFamily: "'Space Mono', monospace", fontSize: 14, fontWeight: 700,
       letterSpacing: 2, position: "relative", overflow: "hidden",
       transition: "opacity 0.2s, transform 0.2s",
       boxShadow: "0 4px 24px #00d4ff22"
@@ -100,17 +100,17 @@ export default function LandingPage({ onStart }) {
             borderRadius: 20, padding: "5px 14px", marginBottom: 28
           }}>
             <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#34d399" }} />
-            <span style={{ fontSize: 9, color: "#8b949e", fontFamily: "monospace", letterSpacing: 2 }}>MULTI-AGENT AI SYSTEM</span>
+            <span style={{ fontSize: 11, color: "#8b949e", fontFamily: "monospace", letterSpacing: 2 }}>MULTI-AGENT AI SYSTEM</span>
           </div>
 
           <h1 style={{
-            fontFamily: "'Space Mono', monospace", fontSize: 38, fontWeight: 700,
+            fontFamily: "'Space Mono', monospace", fontSize: 44, fontWeight: 700,
             color: "#e6edf3", margin: "0 0 8px", lineHeight: 1.15, letterSpacing: -0.5
           }}>
             Hiring Decisions That
           </h1>
           <h1 style={{
-            fontFamily: "'Space Mono', monospace", fontSize: 38, fontWeight: 700,
+            fontFamily: "'Space Mono', monospace", fontSize: 44, fontWeight: 700,
             margin: "0 0 20px", lineHeight: 1.15,
             background: "linear-gradient(90deg, #00d4ff, #a78bfa)",
             WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent"
@@ -118,7 +118,7 @@ export default function LandingPage({ onStart }) {
             Explain Themselves
           </h1>
 
-          <p style={{ color: "#6b7280", fontSize: 14, maxWidth: 480, margin: "0 auto 36px", lineHeight: 1.7, fontFamily: "system-ui, sans-serif" }}>
+          <p style={{ color: "#6b7280", fontSize: 17, maxWidth: 520, margin: "0 auto 36px", lineHeight: 1.8, fontFamily: "system-ui, sans-serif" }}>
             Four specialized AI agents debate every resume in real-time — delivering transparent, bias-audited hiring decisions with full reasoning.
           </p>
 
@@ -143,8 +143,8 @@ export default function LandingPage({ onStart }) {
               flex: 1, padding: "20px 24px", textAlign: "center",
               borderRight: i < 2 ? "1px solid #1e2433" : "none"
             }}>
-              <div style={{ fontFamily: "'Space Mono', monospace", fontSize: 22, fontWeight: 700, color: "#e6edf3", marginBottom: 4 }}>{s.value}</div>
-              <div style={{ fontSize: 10, color: "#484f58", letterSpacing: 1.5, textTransform: "uppercase", fontFamily: "monospace" }}>{s.label}</div>
+              <div style={{ fontFamily: "'Space Mono', monospace", fontSize: 28, fontWeight: 700, color: "#e6edf3", marginBottom: 6 }}>{s.value}</div>
+              <div style={{ fontSize: 12, color: "#484f58", letterSpacing: 1.5, textTransform: "uppercase", fontFamily: "monospace" }}>{s.label}</div>
             </div>
           ))}
         </div>
